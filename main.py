@@ -75,3 +75,33 @@
 
 # obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object    
 # print(obj1.display_battery_info())
+#POLYMORPHISM
+
+class Car:#class
+    def __init__(self, make, model, year):#constructor
+        self.make = make
+        self.model = model
+        self.year = year
+    
+    def display_info(self):
+        return f"{self.year} {self.make} {self.model}"
+    def start_engine(self):
+        return "The car's engine is starting."
+    
+class ElectricCar(Car):#child class
+    def __init__(self, make, model, year, battery_size):#constructor
+        super().__init__(make, model, year)#calling parent class constructor
+        self.battery_size = battery_size
+    def display_battery_info(self):# acess parent class method
+        return f"{self.display_info()} with a {self.battery_size}-kWh battery"
+    def start_engine(self):
+        return "The electric car is starting silently."
+    
+class IgnitionCar(Car):#child class#method overriding
+    def start_engine(self):#method overriding
+        return "The ignition car's engine is starting with a roar."
+
+obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object 
+obj2 = IgnitionCar("Ford", "Mustang", 2021)#object
+print(obj1.start_engine())
+print(obj2.start_engine())   
