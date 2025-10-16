@@ -77,31 +77,82 @@
 # print(obj1.display_battery_info())
 #POLYMORPHISM
 
+# class Car:#class
+#     def __init__(self, make, model, year):#constructor
+#         self.make = make
+#         self.model = model
+#         self.year = year
+    
+#     def display_info(self):
+#         return f"{self.year} {self.make} {self.model}"
+#     def start_engine(self):
+#         return "The car's engine is starting."
+    
+# class ElectricCar(Car):#child class
+#     def __init__(self, make, model, year, battery_size):#constructor
+#         super().__init__(make, model, year)#calling parent class constructor
+#         self.battery_size = battery_size
+#     def display_battery_info(self):# acess parent class method
+#         return f"{self.display_info()} with a {self.battery_size}-kWh battery"
+#     def start_engine(self):
+#         return "The electric car is starting silently."
+    
+# class IgnitionCar(Car):#child class#method overriding
+#     def start_engine(self):#method overriding
+#         return "The ignition car's engine is starting with a roar."
+
+# obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object 
+# obj2 = IgnitionCar("Ford", "Mustang", 2021)#object
+# print(obj1.start_engine())
+# print(obj2.start_engine())   
+
+# ENCAPSULATION
 class Car:#class
     def __init__(self, make, model, year):#constructor
-        self.make = make
-        self.model = model
-        self.year = year
-    
+        self.__make = make#private variable
+        self.__model = model#private variable
+        self.__year = year#private variable
+
     def display_info(self):
-        return f"{self.year} {self.make} {self.model}"
-    def start_engine(self):
-        return "The car's engine is starting."
+        return f"{self.__year} {self.__make} {self.__model}"
+    
+    def get_make(self):#getter method
+        return self.__make
+    
+    def set_make(self, make):#setter method
+        self.__make = make
     
 class ElectricCar(Car):#child class
     def __init__(self, make, model, year, battery_size):#constructor
         super().__init__(make, model, year)#calling parent class constructor
-        self.battery_size = battery_size
-    def display_battery_info(self):# acess parent class method
-        return f"{self.display_info()} with a {self.battery_size}-kWh battery"
-    def start_engine(self):
-        return "The electric car is starting silently."
-    
-class IgnitionCar(Car):#child class#method overriding
-    def start_engine(self):#method overriding
-        return "The ignition car's engine is starting with a roar."
+        self.__battery_size = battery_size#private variable
 
-obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object 
-obj2 = IgnitionCar("Ford", "Mustang", 2021)#object
-print(obj1.start_engine())
-print(obj2.start_engine())   
+    def display_battery_info(self):# acess parent class method
+        return f"{self.display_info()} with a {self.__battery_size}-kWh battery"
+    
+    def get_battery_size(self):# BASIC getter method
+        return self.__battery_size
+    
+    def set_battery_size(self, battery_size):# BASIC setter method
+        self.__battery_size = battery_size
+    
+    @property# property decorator
+    def battery_size(self):# ADVANCED getter method
+        return self.__battery_size
+    @battery_size.setter# property decorator
+    def battery_size(self, battery_size):# ADVANCED setter method
+        self.__battery_size = battery_size
+
+obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object    
+print(obj1.display_battery_info())
+print(obj1.get_battery_size())# accessing BASIC getter method
+obj1.set_battery_size(120)# accessing BASIC setter method
+print(obj1.get_battery_size())# accessing BASIC getter method
+print(obj1.battery_size)# accessing ADVANCED getter method
+obj1.battery_size = 150# accessing ADVANCED setter method
+print(obj1.battery_size)# accessing ADVANCED getter method
+# difference between BASIC and ADVANCED getter and setter method is that in BASIC we 
+# have to call the method using () but in ADVANCED we can access it like a variable without ().
+# and also in ADVANCED we can use property decorator to create getter and setter method with same name as variable.
+# ADVANCED getter and setter method is more python way 
+
