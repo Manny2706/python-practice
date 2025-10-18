@@ -106,53 +106,96 @@
 # print(obj1.start_engine())
 # print(obj2.start_engine())   
 
-# ENCAPSULATION
-class Car:#class
-    def __init__(self, make, model, year):#constructor
-        self.__make = make#private variable
-        self.__model = model#private variable
-        self.__year = year#private variable
+# # ENCAPSULATION 
+# class Car:#class
+#     def __init__(self, make, model, year):#constructor
+#         self.__make = make#private variable
+#         self.__model = model#private variable
+#         self.__year = year#private variable
 
-    def display_info(self):
-        return f"{self.__year} {self.__make} {self.__model}"
+#     def display_info(self):
+#         return f"{self.__year} {self.__make} {self.__model}"
     
-    def get_make(self):#getter method
-        return self.__make
+#     def get_make(self):#getter method
+#         return self.__make
     
-    def set_make(self, make):#setter method
-        self.__make = make
+#     def set_make(self, make):#setter method
+#         self.__make = make
     
-class ElectricCar(Car):#child class
-    def __init__(self, make, model, year, battery_size):#constructor
-        super().__init__(make, model, year)#calling parent class constructor
-        self.__battery_size = battery_size#private variable
+# class ElectricCar(Car):#child class
+#     def __init__(self, make, model, year, battery_size):#constructor
+#         super().__init__(make, model, year)#calling parent class constructor
+#         self.__battery_size = battery_size#private variable
 
-    def display_battery_info(self):# acess parent class method
-        return f"{self.display_info()} with a {self.__battery_size}-kWh battery"
+#     def display_battery_info(self):# acess parent class method
+#         return f"{self.display_info()} with a {self.__battery_size}-kWh battery"
     
-    def get_battery_size(self):# BASIC getter method
-        return self.__battery_size
+#     def get_battery_size(self):# BASIC getter method
+#         return self.__battery_size
     
-    def set_battery_size(self, battery_size):# BASIC setter method
-        self.__battery_size = battery_size
+#     def set_battery_size(self, battery_size):# BASIC setter method
+#         self.__battery_size = battery_size
     
-    @property# property decorator
-    def battery_size(self):# ADVANCED getter method
-        return self.__battery_size
-    @battery_size.setter# property decorator
-    def battery_size(self, battery_size):# ADVANCED setter method
-        self.__battery_size = battery_size
+#     @property# property decorator
+#     def battery_size(self):# ADVANCED getter method
+#         return self.__battery_size
+#     @battery_size.setter# property decorator
+#     def battery_size(self, battery_size):# ADVANCED setter method
+#         self.__battery_size = battery_size
 
-obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object    
-print(obj1.display_battery_info())
-print(obj1.get_battery_size())# accessing BASIC getter method
-obj1.set_battery_size(120)# accessing BASIC setter method
-print(obj1.get_battery_size())# accessing BASIC getter method
-print(obj1.battery_size)# accessing ADVANCED getter method
-obj1.battery_size = 150# accessing ADVANCED setter method
-print(obj1.battery_size)# accessing ADVANCED getter method
-# difference between BASIC and ADVANCED getter and setter method is that in BASIC we 
-# have to call the method using () but in ADVANCED we can access it like a variable without ().
-# and also in ADVANCED we can use property decorator to create getter and setter method with same name as variable.
-# ADVANCED getter and setter method is more python way 
+# obj1 = ElectricCar("Tesla", "Model S", 2020, 100)#object    
+# print(obj1.display_battery_info())
+# print(obj1.get_battery_size())# accessing BASIC getter method
+# obj1.set_battery_size(120)# accessing BASIC setter method
+# print(obj1.get_battery_size())# accessing BASIC getter method
+# print(obj1.battery_size)# accessing ADVANCED getter method
+# obj1.battery_size = 150# accessing ADVANCED setter method
+# print(obj1.battery_size)# accessing ADVANCED getter method
+# # difference between BASIC and ADVANCED getter and setter method is that in BASIC we 
+# # have to call the method using () but in ADVANCED we can access it like a variable without ().
+# # and also in ADVANCED we can use property decorator to create getter and setter method with same name as variable.
+# # ADVANCED getter and setter method is more python way 
 
+# ABSTRACTION
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.state="stopped"
+        self.speed=0
+        self.fuel_level=100
+
+    def fuel_type(self):
+        pass
+    def start(self):
+        self.state="running"
+        self.speed=10
+        self.fuel_level-=5
+        if self.fuel_level<=0:
+            self.state="stopped"
+            self.speed=0
+            return "Cannot start the car. Fuel level is too low."
+        else:
+            return "Car started"
+    
+class ElectricCar(Car):
+    def __init__(self, make, model, year, battery_size):
+        super().__init__(make, model, year)
+        self.battery_size = battery_size
+       
+
+
+    def fuel_type(self):
+        return "Electricity"
+
+class GasolineCar(Car):
+    def fuel_type(self):
+        return "Gasoline"
+electric_car = ElectricCar("Tesla", "Model S", 2020, 100)
+gasoline_car = GasolineCar("Toyota", "Camry", 2020)
+print(electric_car.fuel_type())  # Output: Electricity
+print(gasoline_car.fuel_type())  # Output: Gasoline
+while electric_car.fuel_level:
+    # print(electric_car.fuel_level)
+    print(electric_car.start())
