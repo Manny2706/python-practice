@@ -1,0 +1,2 @@
+INFO:root:Function 'add' called with arguments: (5, 10) and keyword arguments: {} at Sun Oct 19 13:35:58 2025
+INFO:root:Function 'add' called with arguments: (5, 10) and keyword arguments: {} at Sun Oct 19 13:37:47 2025

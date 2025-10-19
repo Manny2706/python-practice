@@ -156,46 +156,68 @@
 # # and also in ADVANCED we can use property decorator to create getter and setter method with same name as variable.
 # # ADVANCED getter and setter method is more python way 
 
-# ABSTRACTION
-class Car:
-    def __init__(self, make, model, year):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.state="stopped"
-        self.speed=0
-        self.fuel_level=100
+# # ABSTRACTION
+# class Car:
+#     def __init__(self, make, model, year):
+#         self.make = make
+#         self.model = model
+#         self.year = year
+#         self.state="stopped"
+#         self.speed=0
+#         self.fuel_level=100
 
-    def fuel_type(self):
-        pass
-    def start(self):
-        self.state="running"
-        self.speed=10
-        self.fuel_level-=5
-        if self.fuel_level<=0:
-            self.state="stopped"
-            self.speed=0
-            return "Cannot start the car. Fuel level is too low."
-        else:
-            return "Car started"
+#     def fuel_type(self):
+#         pass
+#     def start(self):
+#         self.state="running"
+#         self.speed=10
+#         self.fuel_level-=5
+#         if self.fuel_level<=0:
+#             self.state="stopped"
+#             self.speed=0
+#             return "Cannot start the car. Fuel level is too low."
+#         else:
+#             return "Car started"
     
-class ElectricCar(Car):
-    def __init__(self, make, model, year, battery_size):
-        super().__init__(make, model, year)
-        self.battery_size = battery_size
+# class ElectricCar(Car):
+#     def __init__(self, make, model, year, battery_size):
+#         super().__init__(make, model, year)
+#         self.battery_size = battery_size
        
 
 
-    def fuel_type(self):
-        return "Electricity"
+#     def fuel_type(self):
+#         return "Electricity"
 
-class GasolineCar(Car):
-    def fuel_type(self):
-        return "Gasoline"
-electric_car = ElectricCar("Tesla", "Model S", 2020, 100)
-gasoline_car = GasolineCar("Toyota", "Camry", 2020)
-print(electric_car.fuel_type())  # Output: Electricity
-print(gasoline_car.fuel_type())  # Output: Gasoline
-while electric_car.fuel_level:
-    # print(electric_car.fuel_level)
-    print(electric_car.start())
+# class GasolineCar(Car):
+#     def fuel_type(self):
+#         return "Gasoline"
+# electric_car = ElectricCar("Tesla", "Model S", 2020, 100)
+# gasoline_car = GasolineCar("Toyota", "Camry", 2020)
+# print(electric_car.fuel_type())  # Output: Electricity
+# print(gasoline_car.fuel_type())  # Output: Gasoline
+# while electric_car.fuel_level:
+#     # print(electric_car.fuel_level)
+#     print(electric_car.start())
+
+#  DECORATORS
+# from functools import wraps
+# def decorator_function_log(original_function):
+#     import time , logging
+#     logging.basicConfig(filename=f"{original_function.__name__}_log.txt", level=logging.INFO)
+
+#     @wraps(original_function)
+#     def wrapper_function(*args, **kwargs):
+#         logging.info(
+#             f"Function '{original_function.__name__}' called with arguments: {args} and keyword arguments: {kwargs} at {time.ctime()}"
+#         )
+#         return original_function(*args, **kwargs)
+#     return wrapper_function
+
+# @decorator_function_log
+# def add(a, b):
+#     return f" {a} + {b} = {a + b}"
+
+# result = add(5, 10)
+# print(result)
+
