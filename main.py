@@ -244,5 +244,22 @@
 # for car_info in car_gen:
 #     print(car_info)# using generator function , we can iterate through large datasets without loading everything into memory at once.,saves memory
 
+# # BONUS
+my_list=[1,2,3,4,5,6,7,8,9,10]
+# squared_list = [x**2 for x in my_list ]
+# print(squared_list)
+# name=["Alice", "Bob", "Charlie"]
+# fav_fruits=["Apple", "Banana", "Cherry"]
+# name_fruit_dict = {n: f for n, f in zip(name, fav_fruits)}
+# print(name_fruit_dict)
+# print(type(name_fruit_dict))
+# squared_num =list(map(lambda x: x**2, my_list))# using map and lambda function
+# print(squared_num)
 
+# even
+# even_nums=list(filter(lambda x:x%2==0,my_list))
+# print(even_nums)
 
+# from functools import reduce
+# sum= reduce(lambda x,y:x+y,my_list)# using reduce function
+# print(sum)
