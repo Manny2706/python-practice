@@ -214,10 +214,34 @@
 #         return original_function(*args, **kwargs)
 #     return wrapper_function
 
-# @decorator_function_log
+# @decorator_function_log 
 # def add(a, b):
 #     return f" {a} + {b} = {a + b}"
-
+# # add()=decorator_function_log(add)
 # result = add(5, 10)
 # print(result)
+
+# GENERATORS AND ITERATORS
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        return f"{self.year} {self.make} {self.model}"
+    
+car1 = Car("Toyota", "Camry", 2020)
+car2 = Car("Honda", "Civic", 2021)
+car3 = Car("Ford", "Mustang", 2022)
+car_list = [car1, car2, car3]
+# for car in car_list:# traditional way,takes more memory
+#     print(car.display_info())
+def car_generator(cars):# generator function, takes less memory
+    for car in cars:
+        yield car.display_info()
+car_gen = car_generator(car_list)
+for car_info in car_gen:
+    print(car_info)
+
 
